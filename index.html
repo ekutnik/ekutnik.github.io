@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eva Kutnik — Ghost Onboarding Research</title>
+  <meta name="description" content="Two AI-powered tools exploring how Ghost could close its onboarding gap — built by Eva Kutnik as an independent research project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f9f9f7;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #15171a;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 32px 56px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #6b6b6b;
+      letter-spacing: 0.07em;
+    }
+
+    /* ── Header ── */
+
+    .header {
+      margin-bottom: 36px;
+    }
+
+    .header .eyebrow {
+      margin-bottom: 14px;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #15171a;
+      margin-bottom: 14px;
+    }
+
+    .header .subtitle {
+      font-size: 17px;
+      color: #6b6b6b;
+      line-height: 1.7;
+      max-width: 720px;
+    }
+
+    /* ── Proof Section ── */
+
+    .proof {
+      margin-bottom: 36px;
+    }
+
+    .proof-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #6b6b6b;
+      margin-bottom: 18px;
+    }
+
+    .yt-thread {
+      background: #0f0f0f;
+      border-radius: 12px;
+      overflow: hidden;
+      max-height: 205px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .yt-thread-wrapper {
+      position: relative;
+    }
+
+    .scroll-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to bottom, transparent, rgba(15, 15, 15, 0.95));
+      border-radius: 0 0 12px 12px;
+      pointer-events: none;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 0 12px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .yt-thread::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .yt-thread::-webkit-scrollbar-track {
+      background: #0f0f0f;
+    }
+
+    .yt-thread::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+    }
+
+    .yt-comment {
+      display: flex;
+      gap: 12px;
+      padding: 14px 18px;
+    }
+
+    .yt-comment + .yt-comment {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .yt-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .yt-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .yt-username {
+      font-size: 13px;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .yt-text {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .yt-meta {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .yt-meta svg {
+      width: 14px;
+      height: 14px;
+      fill: rgba(255, 255, 255, 0.5);
+      vertical-align: middle;
+      margin-right: 4px;
+      position: relative;
+      top: -1px;
+    }
+
+    /* ── Transition ── */
+
+    .transition {
+      font-size: 15px;
+      color: #15171a;
+      font-weight: 500;
+      margin-bottom: 36px;
+    }
+
+    /* ── Tool Cards ── */
+
+    .tools {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .tool-card {
+      background: #ffffff;
+      border: 1px solid #e8e8e4;
+      border-left: 3px solid #2d6a4f;
+      border-radius: 12px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tool-card .eyebrow {
+      margin-bottom: 8px;
+    }
+
+    .tool-card h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #15171a;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .tool-card .description {
+      font-size: 13.5px;
+      color: #6b6b6b;
+      line-height: 1.55;
+      flex-grow: 1;
+    }
+
+    .tool-card .try-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #15171a;
+      text-decoration: underline;
+      text-decoration-color: #e8e8e4;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease;
+    }
+
+    .tool-card .try-link:hover {
+      color: #2d6a4f;
+    }
+
+    /* ── Footer ── */
+
+    .footer {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid #e8e8e4;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: #9a9a9a;
+    }
+
+    /* ── Responsive ── */
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 40px 20px 80px;
+      }
+
+      .header h1 {
+        font-size: 22px;
+      }
+
+      .tools {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <p class="eyebrow">Independent research project</p>
+      <h1>Ghost is powerful. Starting on your own shouldn't be this hard.</h1>
+      <p class="subtitle">I researched Ghost's onboarding gap through YouTube comments, creator forums, and market signals — then built two tools to explore what closing it might look like.</p>
+    </header>
+
+    <div class="proof">
+      <p class="proof-label">Real questions from Ghost YouTube content</p>
+      <div class="yt-thread-wrapper">
+      <div class="yt-thread">
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#e07b54">t</div>
+          <div class="yt-body">
+            <p class="yt-username">travelagency_curious</p>
+            <p class="yt-text">Is it good as a magazine/blog style website for a small travel agency?</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>34</span><span>2 weeks ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#5b8abf">n</div>
+          <div class="yt-body">
+            <p class="yt-username">newtoGhost</p>
+            <p class="yt-text">Is 'subscribing' to a website on Ghost different to signing up for the newsletter?</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>41</span><span>1 week ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#7b6baf">w</div>
+          <div class="yt-body">
+            <p class="yt-username">wordpress_migrating</p>
+            <p class="yt-text">Can I use Ghost just as a free blog monetized with AdSense like I do with WordPress?</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>58</span><span>3 days ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#2d6a4f">p</div>
+          <div class="yt-body">
+            <p class="yt-username">publisher_plan_user</p>
+            <p class="yt-text">If I'm subscribed to the Publisher plan, do free newsletter subscriptions (people entering their email) count toward the 1k members, or are only paid subscribers counted?</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>47</span><span>5 days ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#d4a054">s</div>
+          <div class="yt-body">
+            <p class="yt-username">social_first_blogger</p>
+            <p class="yt-text">Does Ghost have a feature like WordPress where it can send out your posts to your social media channels — Facebook and Instagram?</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>29</span><span>4 days ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#bf5b5b">f</div>
+          <div class="yt-body">
+            <p class="yt-username">first_time_visitor</p>
+            <p class="yt-text">Can anyone read the blog without signing up if they don't want to?</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>22</span><span>1 week ago</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-overlay">↓ scroll for more</div>
+      </div>
+    </div>
+
+    <p class="transition">These are Ghost's potential users — asking questions on YouTube before they find Ghost's forum, which is genuinely excellent but hard to discover.</p>
+
+    <section class="tools" aria-label="Tools">
+      <article class="tool-card">
+        <p class="eyebrow">Tool 01</p>
+        <h2>Ghost Onboarding Assistant</h2>
+        <p class="description">Takes your niche, audience size, and goal — returns a personalised 30-day action plan with real Ghost themes, features to configure, and daily tasks tailored to your publication.</p>
+        <a href="https://ekutnik.github.io/ghost-onboarding-assistant/" class="try-link">Try it →</a>
+      </article>
+
+      <article class="tool-card">
+        <p class="eyebrow">Tool 02</p>
+        <h2>Ghost Fit Checker</h2>
+        <p class="description">Answers 'Is Ghost right for me?' with a frank, personalised verdict — covering plans, limitations, migration considerations, and what to do next.</p>
+        <a href="https://ekutnik.github.io/ghost-fit-checker/" class="try-link">Try it →</a>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <p>Independent research project · Not affiliated with Ghost Foundation · Built by Eva Kutnik</p>
+    </footer>
+  </main>
+</body>
+</html>
