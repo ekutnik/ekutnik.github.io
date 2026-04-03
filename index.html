@@ -82,10 +82,10 @@
 
     .yt-thread {
       background: #0f0f0f;
-      border-radius: 12px;
-      overflow: hidden;
-      max-height: 205px;
+      border-radius: 16px;
+      overflow-x: hidden;
       overflow-y: auto;
+      max-height: 308px;
       position: relative;
     }
 
@@ -99,7 +99,7 @@
       left: 0;
       right: 0;
       background: linear-gradient(to bottom, transparent, rgba(15, 15, 15, 0.95));
-      border-radius: 0 0 12px 12px;
+      border-radius: 0 0 16px 16px;
       pointer-events: none;
       z-index: 1;
       text-align: center;
@@ -108,17 +108,22 @@
       color: rgba(255, 255, 255, 0.4);
     }
 
+    .yt-thread {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+    }
+
     .yt-thread::-webkit-scrollbar {
-      width: 6px;
+      width: 4px;
     }
 
     .yt-thread::-webkit-scrollbar-track {
-      background: #0f0f0f;
+      background: transparent;
     }
 
     .yt-thread::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.15);
-      border-radius: 3px;
+      border-radius: 4px;
     }
 
     .yt-comment {
@@ -180,6 +185,15 @@
       margin-right: 4px;
       position: relative;
       top: -1px;
+    }
+
+    .yt-comment.yt-reply {
+      margin-left: 40px;
+    }
+
+    .yt-reply .yt-username {
+      color: #1a73e8;
+      font-weight: 700;
     }
 
     /* ── Transition ── */
@@ -333,6 +347,54 @@
             <p class="yt-username">first_time_visitor</p>
             <p class="yt-text">Can anyone read the blog without signing up if they don't want to?</p>
             <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>22</span><span>1 week ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#e67e22">w</div>
+          <div class="yt-body">
+            <p class="yt-username">wordpress_migrator</p>
+            <p class="yt-text">I would like to clear up some doubts before migrating from Wordpress to Ghost — 1. can I use ghost just as a free blog monetized with adsense (like I do with wordpress?) 2. Ghost's basic plan entitles you to 500 members. I would like to know if members and newsletter subscribers are the same thing? 3. After reaching the number of 500 members, am I obliged to change plans? thanks!</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>73</span><span>1 week ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#8e44ad">p</div>
+          <div class="yt-body">
+            <p class="yt-username">publisher_plan_question</p>
+            <p class="yt-text">Super helpful video! Just one question: if I'm subscribed to the Publisher plan, do free newsletter subscriptions (people entering their email) count toward the 1k members, or are only paid subscribers counted?</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>52</span><span>3 days ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#2980b9">w</div>
+          <div class="yt-body">
+            <p class="yt-username">wordpress_to_ghost</p>
+            <p class="yt-text">Used WordPress for decades. Was on Medium and decided to try Ghost. The one thing I can't figure out anywhere is the ability to send an email when I publish an article but have the email ONLY send a preview or excerpt. Seems like a huge gap?</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>61</span><span>5 days ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#27ae60">s</div>
+          <div class="yt-body">
+            <p class="yt-username">social_media_question</p>
+            <p class="yt-text">Does Ghost have a feature like WordPress where it can send out your posts to your social media channels — Facebook and Instagram? And if you wanted to could you get away using the site without memberships to avoid the price rise?</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>44</span><span>2 weeks ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment">
+          <div class="yt-avatar" style="background:#c0392b">b</div>
+          <div class="yt-body">
+            <p class="yt-username">budget_conscious</p>
+            <p class="yt-text">too expensive</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>12</span><span>1 month ago</span></p>
+          </div>
+        </div>
+        <div class="yt-comment yt-reply">
+          <div class="yt-avatar" style="background:#15171a">D</div>
+          <div class="yt-body">
+            <p class="yt-username">DavidUtke</p>
+            <p class="yt-text">No way, email and blogging combined? The price point for what you get is very fair.</p>
+            <p class="yt-meta"><span><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>31</span><span>5 days ago</span></p>
           </div>
         </div>
       </div>
